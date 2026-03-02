@@ -1,0 +1,2529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Level Chemistry - Periodic Table Trends & Reactions (6092)</title>
+    <style>
+        /* ===== CSS RESET & VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --alkali: #e74c3c;
+            --alkaline: #e67e22;
+            --halogen: #9b59b6;
+            --noble: #3498db;
+            --transition: #f1c40f;
+            --post-transition: #95a5a6;
+            --metalloid: #1abc9c;
+            --nonmetal: #27ae60;
+            --lanthanide: #8e44ad;
+            --actinide: #c0392b;
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #1abc9c;
+            --bg: #f8f9fa;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --hover-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-brand {
+            text-align: center;
+            padding: 8px 20px 4px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .nav-brand small {
+            display: block;
+            font-size: 0.6em;
+            opacity: 0.8;
+            font-weight: normal;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 4px 10px 8px;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            margin-top: 85px;
+            padding: 15px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            text-align: center;
+            padding: 35px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 { font-size: 2em; margin-bottom: 8px; }
+        .hero p { font-size: 1em; opacity: 0.9; }
+
+        /* ===== SECTIONS ===== */
+        .section { margin-bottom: 35px; }
+
+        .section-title {
+            font-size: 1.5em;
+            color: var(--primary);
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+            margin-bottom: 18px;
+        }
+
+        /* ===== CARDS ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: var(--hover-shadow);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card ul { padding-left: 18px; }
+        .card li { margin-bottom: 4px; font-size: 0.9em; }
+
+        /* ===== PERIODIC TABLE ===== */
+        .pt-container {
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .pt-wrapper {
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: var(--card-shadow);
+            min-width: 950px;
+        }
+
+        .pt-header-row, .pt-row {
+            display: grid;
+            grid-template-columns: 30px repeat(18, 1fr);
+            gap: 2px;
+            margin-bottom: 2px;
+        }
+
+        .pt-group-num, .pt-period-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65em;
+            font-weight: bold;
+            color: #888;
+            background: #f5f5f5;
+            border-radius: 3px;
+        }
+
+        .pt-element {
+            aspect-ratio: 1;
+            min-width: 42px;
+            padding: 2px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pt-element:not(.empty):hover {
+            transform: scale(1.6);
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+
+        .pt-element .atomic-num { font-size: 0.5em; opacity: 0.8; }
+        .pt-element .symbol { font-weight: bold; font-size: 0.95em; line-height: 1.1; }
+        .pt-element .name { font-size: 0.4em; opacity: 0.7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+
+        .pt-element.empty { background: transparent !important; pointer-events: none; }
+
+        .pt-element.alkali-metal { background: var(--alkali); color: white; }
+        .pt-element.alkaline-earth { background: var(--alkaline); color: white; }
+        .pt-element.transition-metal { background: var(--transition); color: #333; }
+        .pt-element.post-transition { background: var(--post-transition); color: white; }
+        .pt-element.metalloid { background: var(--metalloid); color: white; }
+        .pt-element.nonmetal { background: var(--nonmetal); color: white; }
+        .pt-element.halogen { background: var(--halogen); color: white; }
+        .pt-element.noble-gas { background: var(--noble); color: white; }
+        .pt-element.lanthanide { background: var(--lanthanide); color: white; }
+        .pt-element.actinide { background: var(--actinide); color: white; }
+
+        .pt-element.highlight { animation: pulse-highlight 0.5s ease-in-out infinite alternate; }
+        .pt-element.dimmed { opacity: 0.15 !important; }
+
+        @keyframes pulse-highlight {
+            from { transform: scale(1.15); box-shadow: 0 0 15px rgba(255,255,255,0.9); }
+            to { transform: scale(1.25); box-shadow: 0 0 25px rgba(255,255,255,1); }
+        }
+
+        /* ===== LEGEND ===== */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            margin: 12px 0;
+            padding: 12px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.7em;
+            padding: 4px 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .legend-item:hover { transform: scale(1.05); border-color: var(--primary); }
+        .legend-item.active { border-color: var(--primary); background: rgba(0,0,0,0.05); }
+
+        .legend-color { width: 12px; height: 12px; border-radius: 3px; }
+
+        /* ===== PROPERTY LABELS ===== */
+        .prop-label {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.65em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 6px;
+        }
+
+        .prop-label.physical { background: #3498db; color: white; }
+        .prop-label.chemical { background: #e74c3c; color: white; }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s;
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            font-weight: 500;
+        }
+
+        .tab-btn:hover { transform: translateY(-2px); }
+        .tab-btn.active { color: white; }
+
+        .tab-btn[data-tab="alkali"].active,
+        .tab-btn[data-tab="halogen-disp"].active { background: var(--halogen); }
+        .tab-btn[data-tab="halogen"].active { background: var(--halogen); }
+        .tab-btn[data-tab="noble"].active { background: var(--noble); }
+        .tab-btn[data-tab="transition"].active,
+        .tab-btn[data-tab="metal-disp"].active { background: #d4ac0d; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== DEFINITION BOX ===== */
+        .definition-box {
+            background: linear-gradient(135deg, #e8f4fd, #d6eaf8);
+            border: 2px solid #3498db;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .definition-box h3 {
+            color: #2980b9;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .definition-box .def-text {
+            font-size: 0.95em;
+            font-weight: 500;
+            color: #1a5276;
+            padding: 10px 12px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 8px;
+        }
+
+        .definition-box .formula-box {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* ===== TREND DIAGRAMS ===== */
+        .trend-diagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin: 18px 0;
+        }
+
+        .arrow-diagram {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .arrow-diagram h4 {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .arrow-visual {
+            display: grid;
+            grid-template-columns: 55px 1fr;
+            grid-template-rows: 40px 1fr;
+            gap: 6px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .arrow-corner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6em;
+            color: #888;
+            text-align: center;
+        }
+
+        .arrow-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.75em;
+            padding: 6px;
+            position: relative;
+        }
+
+        .arrow-right::after {
+            content: '→';
+            position: absolute;
+            right: 6px;
+            font-size: 1.2em;
+        }
+
+        .arrow-right.increase { background: linear-gradient(to right, #a9dfbf, #1e8449); }
+        .arrow-right.decrease { background: linear-gradient(to right, #f5b7b1, #922b21); }
+        .arrow-right.complex { background: linear-gradient(to right, #fad7a0, #d35400, #fad7a0); }
+
+        .arrow-down {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.75em;
+            writing-mode: vertical-lr;
+            padding: 6px;
+            position: relative;
+        }
+
+        .arrow-down::after {
+            content: '↓';
+            position: absolute;
+            bottom: 6px;
+            font-size: 1.2em;
+            writing-mode: horizontal-tb;
+        }
+
+        .arrow-down.increase { background: linear-gradient(to bottom, #a9dfbf, #1e8449); }
+        .arrow-down.decrease { background: linear-gradient(to bottom, #f5b7b1, #922b21); }
+
+        .arrow-center {
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.8em;
+            min-height: 100px;
+        }
+
+        /* ===== TREND EXPLANATION CARDS ===== */
+        .trend-explain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .explain-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .explain-card.across { border-color: #27ae60; }
+        .explain-card.down { border-color: #3498db; }
+
+        .explain-card h5 {
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .explain-card .badge {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            color: white;
+        }
+
+        .explain-card .badge.across { background: #27ae60; }
+        .explain-card .badge.down { background: #3498db; }
+
+        .explain-card ul { padding-left: 16px; font-size: 0.85em; }
+        .explain-card li { margin-bottom: 4px; }
+
+        /* ===== BAR CHART ===== */
+        .bar-chart-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .bar-chart-box h4 {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 0.9em;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 6px;
+            height: 180px;
+            padding: 10px 8px 35px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .bar-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            max-width: 45px;
+        }
+
+        .bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.8s ease;
+            position: relative;
+            min-width: 20px;
+        }
+
+        .bar-val {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.55em;
+            font-weight: bold;
+        }
+
+        .bar-lbl {
+            margin-top: 4px;
+            font-size: 0.65em;
+            font-weight: 600;
+            color: #555;
+        }
+
+        /* ===== PROPERTIES CONTAINER ===== */
+        .props-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 18px;
+            margin: 15px 0;
+        }
+
+        .prop-section {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .prop-section h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            font-size: 1em;
+        }
+
+        .prop-section .icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        .prop-section .icon.physical { background: #3498db; }
+        .prop-section .icon.chemical { background: #e74c3c; }
+
+        .prop-list { list-style: none; }
+
+        .prop-list li {
+            padding: 7px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88em;
+        }
+
+        .prop-list li:last-child { border-bottom: none; }
+
+        .trend-tag {
+            font-size: 0.7em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .trend-tag.up { background: #d4edda; color: #155724; }
+        .trend-tag.down { background: #f8d7da; color: #721c24; }
+        .trend-tag.varies { background: #fff3cd; color: #856404; }
+
+        /* ===== DATA TABLES ===== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            margin: 12px 0;
+            font-size: 0.8em;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 10px 6px;
+            text-align: left;
+        }
+
+        .data-table td {
+            padding: 8px 6px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table tr:hover { background: #f8f9fa; }
+
+        .data-table.alkali-table th { background: var(--alkali); }
+        .data-table.halogen-table th { background: var(--halogen); }
+        .data-table.noble-table th { background: var(--noble); }
+        .data-table.transition-table th { background: #d4ac0d; }
+
+        .rx-cell { background: #d4edda !important; color: #155724; text-align: center; }
+        .no-rx-cell { background: #f8d7da !important; color: #721c24; text-align: center; }
+
+        /* ===== REACTION CARDS ===== */
+        .reaction-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 18px;
+        }
+
+        .reaction-header {
+            padding: 12px 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .reaction-header h4 {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .rx-badge {
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: bold;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .rx-badge.success { color: #27ae60; }
+        .rx-badge.fail { color: #c0392b; }
+
+        .reaction-body { padding: 15px; }
+
+        .eq-group { margin-bottom: 12px; }
+
+        .eq-type {
+            font-size: 0.8em;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .eq-box {
+            background: #f8f9fa;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            border-left: 4px solid #bdc3c7;
+        }
+
+        .eq-box.chemical { border-left-color: #3498db; background: #ebf5fb; }
+        .eq-box.ionic { border-left-color: #9b59b6; background: #f5eef8; }
+        .eq-box.no-rx { border-left-color: #95a5a6; color: #7f8c8d; }
+
+        .half-eqs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        @media (max-width: 550px) {
+            .half-eqs { grid-template-columns: 1fr; }
+        }
+
+        .half-eq {
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85em;
+        }
+
+        .half-eq .label {
+            display: block;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .half-eq .eq {
+            font-family: 'Courier New', monospace;
+        }
+
+        .half-eq.oxidation {
+            background: #ffebee;
+            border: 2px solid #e57373;
+        }
+
+        .half-eq.oxidation .label { color: #c62828; }
+
+        .half-eq.reduction {
+            background: #e8f5e9;
+            border: 2px solid #81c784;
+        }
+
+        .half-eq.reduction .label { color: #2e7d32; }
+
+        .obs-box {
+            background: #fffde7;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+
+        .obs-box ul {
+            margin: 8px 0 0 18px;
+            font-size: 0.88em;
+        }
+
+        .obs-box li { margin-bottom: 4px; }
+
+        .explain-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 12px;
+            font-size: 0.88em;
+        }
+
+        /* ===== KEY POINTS ===== */
+        .key-point {
+            background: linear-gradient(135deg, #fffde7, #fff9c4);
+            border-left: 5px solid #ffc107;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 12px 0;
+            font-size: 0.88em;
+        }
+
+        .exam-tip {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-left: 5px solid #4caf50;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 12px 0;
+            font-size: 0.88em;
+        }
+
+        .exam-tip::before {
+            content: '📝 Exam Tip: ';
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-left: 5px solid #f44336;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 12px 0;
+            font-size: 0.88em;
+        }
+
+        .warning-box::before {
+            content: '⚠️ Important: ';
+            font-weight: bold;
+            color: #c62828;
+        }
+
+        /* ===== VIDEO GRID ===== */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .video-thumb {
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .video-thumb .play-btn {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.45em;
+            color: #333;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .video-thumb:hover .play-btn { opacity: 1; }
+
+        .video-info { padding: 10px 12px; }
+        .video-info h4 { font-size: 0.85em; margin-bottom: 3px; }
+        .video-info p { font-size: 0.72em; color: #666; }
+
+        .video-link {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 4px 12px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 0.72em;
+        }
+
+        /* ===== REACTIVITY SERIES ===== */
+        .reactivity-list { max-width: 320px; margin: 12px auto; }
+
+        .reactivity-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 10px;
+            margin: 2px 0;
+            border-radius: 5px;
+            font-size: 0.82em;
+            transition: transform 0.2s;
+        }
+
+        .reactivity-item:hover { transform: translateX(6px); }
+
+        .reactivity-item .sym {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.7em;
+        }
+
+        .reactivity-item.high { background: #ffebee; }
+        .reactivity-item.high .sym { background: #e53935; }
+        .reactivity-item.med { background: #fff3e0; }
+        .reactivity-item.med .sym { background: #fb8c00; }
+        .reactivity-item.low { background: #e3f2fd; }
+        .reactivity-item.low .sym { background: #1e88e5; }
+
+        /* ===== REDOX SUMMARY ===== */
+        .redox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 550px) {
+            .redox-grid { grid-template-columns: 1fr; }
+        }
+
+        .redox-card {
+            padding: 15px;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .redox-card h4 { margin-bottom: 8px; font-size: 1em; }
+        .redox-card ul { padding-left: 18px; font-size: 0.85em; }
+        .redox-card li { margin-bottom: 4px; }
+
+        .redox-example {
+            background: white;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 0.85em;
+        }
+
+        /* ===== ACCORDION ===== */
+        .accordion-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 12px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover { background: #f8f9fa; }
+        .accordion-header .arrow { transition: transform 0.3s; }
+        .accordion-header.active .arrow { transform: rotate(180deg); }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-body.active { max-height: 1500px; }
+        .accordion-inner { padding: 0 15px 15px; }
+
+        /* ===== APP CARDS ===== */
+        .app-card {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .app-card:hover { transform: translateX(4px); }
+        .app-icon { font-size: 1.8em; }
+        .app-content h4 { font-size: 0.9em; margin-bottom: 3px; }
+        .app-content p { font-size: 0.78em; color: #555; }
+
+        /* ===== QUIZ ===== */
+        .quiz-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .topic-btns { display: flex; flex-wrap: wrap; gap: 5px; }
+
+        .topic-btn {
+            padding: 5px 12px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.75em;
+            transition: all 0.3s;
+        }
+
+        .topic-btn:hover { border-color: var(--accent); }
+        .topic-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+        .quiz-score { font-weight: bold; color: var(--accent); }
+
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent), #2ecc71);
+            border-radius: 3px;
+            transition: width 0.4s;
+        }
+
+        .quiz-question { font-size: 0.95em; font-weight: 600; margin-bottom: 12px; }
+
+        .quiz-options { display: grid; gap: 8px; }
+
+        .quiz-opt {
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.88em;
+        }
+
+        .quiz-opt:hover:not(.disabled) { border-color: var(--accent); background: #f0faf8; }
+        .quiz-opt.correct { border-color: #4caf50; background: #e8f5e9; }
+        .quiz-opt.wrong { border-color: #f44336; background: #ffebee; }
+        .quiz-opt.disabled { cursor: default; }
+
+        .quiz-feedback {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            font-size: 0.88em;
+        }
+
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #e8f5e9; border: 1px solid #c8e6c9; }
+        .quiz-feedback.wrong { background: #ffebee; border: 1px solid #ffcdd2; }
+
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .quiz-nav button {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 0.85em;
+            background: var(--accent);
+            color: white;
+        }
+
+        .quiz-nav button:hover:not(:disabled) { background: #16a085; }
+        .quiz-nav button:disabled { background: #ccc; cursor: default; }
+
+        .quiz-loading { text-align: center; padding: 30px; }
+
+        .spinner {
+            width: 35px;
+            height: 35px;
+            border: 4px solid #e0e0e0;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 400px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-size: 1.4em;
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+        }
+
+        .element-header {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .element-header .num { font-size: 0.85em; opacity: 0.9; }
+        .element-header .sym { font-size: 2.5em; font-weight: bold; }
+        .element-header .name { font-size: 1.1em; }
+
+        .element-details { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+        .detail-box {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .detail-box label { font-size: 0.65em; color: #888; text-transform: uppercase; display: block; }
+        .detail-box span { font-weight: bold; font-size: 0.9em; }
+        .detail-box.full { grid-column: 1 / -1; }
+
+        /* ===== BACK TO TOP ===== */
+        .back-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+            box-shadow: 0 3px 10px rgba(26,188,156,0.4);
+        }
+
+        .back-top:hover { background: #16a085; transform: translateY(-2px); }
+        .back-top.show { display: block; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .main-content { margin-top: 80px; padding: 10px; }
+            .hero h1 { font-size: 1.4em; }
+            .section-title { font-size: 1.2em; }
+            .pt-element { min-width: 35px; }
+            .pt-element .name { display: none; }
+            .props-grid, .trend-diagram-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            🧪 Periodic Table: Trends & Reactions
+            <small>Singapore O Level Chemistry 6092</small>
+        </div>
+        <div class="nav-links">
+            <a href="#periodic-table" class="active">📊 Table</a>
+            <a href="#trends">📈 Trends</a>
+            <a href="#groups">🔬 Groups</a>
+            <a href="#displacement">🔄 Displacement</a>
+            <a href="#reactions">⚡ Reactions</a>
+            <a href="#applications">🏭 Uses</a>
+            <a href="#practice">✏️ Practice</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="hero">
+            <h1>🔬 Master the Periodic Table</h1>
+            <p>Explore trends, reactions, and real-world applications</p>
+            <p style="font-size:0.8em; margin-top:6px; opacity:0.85;">Click elements • Study trends • Test yourself 🎯</p>
+        </div>
+
+        <section id="periodic-table" class="section">
+            <h2 class="section-title">📊 Interactive Periodic Table</h2>
+
+            <div class="legend" id="legend">
+                <div class="legend-item" data-group="alkali-metal">
+                    <div class="legend-color" style="background:var(--alkali)"></div>
+                    <span>Alkali Metals</span>
+                </div>
+                <div class="legend-item" data-group="alkaline-earth">
+                    <div class="legend-color" style="background:var(--alkaline)"></div>
+                    <span>Alkaline Earth</span>
+                </div>
+                <div class="legend-item" data-group="transition-metal">
+                    <div class="legend-color" style="background:var(--transition)"></div>
+                    <span>Transition Metals</span>
+                </div>
+                <div class="legend-item" data-group="halogen">
+                    <div class="legend-color" style="background:var(--halogen)"></div>
+                    <span>Halogens</span>
+                </div>
+                <div class="legend-item" data-group="noble-gas">
+                    <div class="legend-color" style="background:var(--noble)"></div>
+                    <span>Noble Gases</span>
+                </div>
+                <div class="legend-item" data-group="nonmetal">
+                    <div class="legend-color" style="background:var(--nonmetal)"></div>
+                    <span>Non-metals</span>
+                </div>
+                <div class="legend-item" data-group="metalloid">
+                    <div class="legend-color" style="background:var(--metalloid)"></div>
+                    <span>Metalloids</span>
+                </div>
+            </div>
+
+            <div class="pt-container">
+                <div class="pt-wrapper">
+                    <div class="pt-header-row">
+                        <div class="pt-group-num"></div>
+                        <div class="pt-group-num">1</div>
+                        <div class="pt-group-num">2</div>
+                        <div class="pt-group-num">3</div>
+                        <div class="pt-group-num">4</div>
+                        <div class="pt-group-num">5</div>
+                        <div class="pt-group-num">6</div>
+                        <div class="pt-group-num">7</div>
+                        <div class="pt-group-num">8</div>
+                        <div class="pt-group-num">9</div>
+                        <div class="pt-group-num">10</div>
+                        <div class="pt-group-num">11</div>
+                        <div class="pt-group-num">12</div>
+                        <div class="pt-group-num">13</div>
+                        <div class="pt-group-num">14</div>
+                        <div class="pt-group-num">15</div>
+                        <div class="pt-group-num">16</div>
+                        <div class="pt-group-num">17</div>
+                        <div class="pt-group-num">18</div>
+                    </div>
+
+                    <div class="pt-row">
+                        <div class="pt-period-num">1</div>
+                        <div class="pt-element nonmetal" data-info="H|1|Hydrogen|1|Non-metal|1|−259|−253|Fuel cells, Haber process">
+                            <span class="atomic-num">1</span><span class="symbol">H</span><span class="name">Hydrogen</span>
+                        </div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element noble-gas" data-info="He|2|Helium|18|Noble Gas|2|−272|−269|Balloons, diving gas">
+                            <span class="atomic-num">2</span><span class="symbol">He</span><span class="name">Helium</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-row">
+                        <div class="pt-period-num">2</div>
+                        <div class="pt-element alkali-metal" data-info="Li|3|Lithium|1|Alkali Metal|2,1|180|1342|Li-ion batteries">
+                            <span class="atomic-num">3</span><span class="symbol">Li</span><span class="name">Lithium</span>
+                        </div>
+                        <div class="pt-element alkaline-earth" data-info="Be|4|Beryllium|2|Alkaline Earth|2,2|1287|2469|Aerospace alloys">
+                            <span class="atomic-num">4</span><span class="symbol">Be</span><span class="name">Beryllium</span>
+                        </div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element metalloid" data-info="B|5|Boron|13|Metalloid|2,3|2076|3927|Borosilicate glass">
+                            <span class="atomic-num">5</span><span class="symbol">B</span><span class="name">Boron</span>
+                        </div>
+                        <div class="pt-element nonmetal" data-info="C|6|Carbon|14|Non-metal|2,4|3550|4027|Diamond, graphite">
+                            <span class="atomic-num">6</span><span class="symbol">C</span><span class="name">Carbon</span>
+                        </div>
+                        <div class="pt-element nonmetal" data-info="N|7|Nitrogen|15|Non-metal|2,5|−210|−196|78% of air, fertilisers">
+                            <span class="atomic-num">7</span><span class="symbol">N</span><span class="name">Nitrogen</span>
+                        </div>
+                        <div class="pt-element nonmetal" data-info="O|8|Oxygen|16|Non-metal|2,6|−218|−183|21% of air, respiration">
+                            <span class="atomic-num">8</span><span class="symbol">O</span><span class="name">Oxygen</span>
+                        </div>
+                        <div class="pt-element halogen" data-info="F|9|Fluorine|17|Halogen|2,7|−220|−188|Toothpaste, Teflon">
+                            <span class="atomic-num">9</span><span class="symbol">F</span><span class="name">Fluorine</span>
+                        </div>
+                        <div class="pt-element noble-gas" data-info="Ne|10|Neon|18|Noble Gas|2,8|−249|−246|Neon signs">
+                            <span class="atomic-num">10</span><span class="symbol">Ne</span><span class="name">Neon</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-row">
+                        <div class="pt-period-num">3</div>
+                        <div class="pt-element alkali-metal" data-info="Na|11|Sodium|1|Alkali Metal|2,8,1|98|883|Street lamps, NaCl">
+                            <span class="atomic-num">11</span><span class="symbol">Na</span><span class="name">Sodium</span>
+                        </div>
+                        <div class="pt-element alkaline-earth" data-info="Mg|12|Magnesium|2|Alkaline Earth|2,8,2|650|1091|Alloys, fireworks">
+                            <span class="atomic-num">12</span><span class="symbol">Mg</span><span class="name">Magnesium</span>
+                        </div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element empty"></div>
+                        <div class="pt-element post-transition" data-info="Al|13|Aluminium|13|Metal|2,8,3|660|2519|Cans, aircraft, foil">
+                            <span class="atomic-num">13</span><span class="symbol">Al</span><span class="name">Aluminium</span>
+                        </div>
+                        <div class="pt-element metalloid" data-info="Si|14|Silicon|14|Metalloid|2,8,4|1414|2900|Computer chips">
+                            <span class="atomic-num">14</span><span class="symbol">Si</span><span class="name">Silicon</span>
+                        </div>
+                        <div class="pt-element nonmetal" data-info="P|15|Phosphorus|15|Non-metal|2,8,5|44|280|Matches, fertilisers">
+                            <span class="atomic-num">15</span><span class="symbol">P</span><span class="name">Phosphorus</span>
+                        </div>
+                        <div class="pt-element nonmetal" data-info="S|16|Sulfur|16|Non-metal|2,8,6|115|445|H₂SO₄, rubber">
+                            <span class="atomic-num">16</span><span class="symbol">S</span><span class="name">Sulfur</span>
+                        </div>
+                        <div class="pt-element halogen" data-info="Cl|17|Chlorine|17|Halogen|2,8,7|−101|−34|Water treatment, bleach">
+                            <span class="atomic-num">17</span><span class="symbol">Cl</span><span class="name">Chlorine</span>
+                        </div>
+                        <div class="pt-element noble-gas" data-info="Ar|18|Argon|18|Noble Gas|2,8,8|−189|−186|Light bulbs, welding">
+                            <span class="atomic-num">18</span><span class="symbol">Ar</span><span class="name">Argon</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-row">
+                        <div class="pt-period-num">4</div>
+                        <div class="pt-element alkali-metal" data-info="K|19|Potassium|1|Alkali Metal|2,8,8,1|64|759|Fertilisers (KNO₃)">
+                            <span class="atomic-num">19</span><span class="symbol">K</span><span class="name">Potassium</span>
+                        </div>
+                        <div class="pt-element alkaline-earth" data-info="Ca|20|Calcium|2|Alkaline Earth|2,8,8,2|842|1484|Cement, bones">
+                            <span class="atomic-num">20</span><span class="symbol">Ca</span><span class="name">Calcium</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Sc|21|Scandium|3|Transition Metal|2,8,9,2|1541|2836|Alloys">
+                            <span class="atomic-num">21</span><span class="symbol">Sc</span><span class="name">Scandium</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Ti|22|Titanium|4|Transition Metal|2,8,10,2|1668|3287|Aircraft, implants">
+                            <span class="atomic-num">22</span><span class="symbol">Ti</span><span class="name">Titanium</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="V|23|Vanadium|5|Transition Metal|2,8,11,2|1910|3407|Steel, V₂O₅ catalyst">
+                            <span class="atomic-num">23</span><span class="symbol">V</span><span class="name">Vanadium</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Cr|24|Chromium|6|Transition Metal|2,8,13,1|1907|2671|Chrome plating">
+                            <span class="atomic-num">24</span><span class="symbol">Cr</span><span class="name">Chromium</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Mn|25|Manganese|7|Transition Metal|2,8,13,2|1246|2061|Steel, MnO₂">
+                            <span class="atomic-num">25</span><span class="symbol">Mn</span><span class="name">Manganese</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Fe|26|Iron|8|Transition Metal|2,8,14,2|1538|2862|Steel, Fe catalyst">
+                            <span class="atomic-num">26</span><span class="symbol">Fe</span><span class="name">Iron</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Co|27|Cobalt|9|Transition Metal|2,8,15,2|1495|2927|Magnets, blue pigment">
+                            <span class="atomic-num">27</span><span class="symbol">Co</span><span class="name">Cobalt</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Ni|28|Nickel|10|Transition Metal|2,8,16,2|1455|2913|Stainless steel">
+                            <span class="atomic-num">28</span><span class="symbol">Ni</span><span class="name">Nickel</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Cu|29|Copper|11|Transition Metal|2,8,18,1|1085|2562|Wiring, plumbing">
+                            <span class="atomic-num">29</span><span class="symbol">Cu</span><span class="name">Copper</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Zn|30|Zinc|12|Transition Metal|2,8,18,2|420|907|Galvanising, batteries">
+                            <span class="atomic-num">30</span><span class="symbol">Zn</span><span class="name">Zinc</span>
+                        </div>
+                        <div class="pt-element post-transition" data-info="Ga|31|Gallium|13|Post-transition|2,8,18,3|30|2204|Semiconductors">
+                            <span class="atomic-num">31</span><span class="symbol">Ga</span><span class="name">Gallium</span>
+                        </div>
+                        <div class="pt-element metalloid" data-info="Ge|32|Germanium|14|Metalloid|2,8,18,4|938|2833|Semiconductors">
+                            <span class="atomic-num">32</span><span class="symbol">Ge</span><span class="name">Germanium</span>
+                        </div>
+                        <div class="pt-element metalloid" data-info="As|33|Arsenic|15|Metalloid|2,8,18,5|817|614|Semiconductors">
+                            <span class="atomic-num">33</span><span class="symbol">As</span><span class="name">Arsenic</span>
+                        </div>
+                        <div class="pt-element nonmetal" data-info="Se|34|Selenium|16|Non-metal|2,8,18,6|221|685|Solar cells">
+                            <span class="atomic-num">34</span><span class="symbol">Se</span><span class="name">Selenium</span>
+                        </div>
+                        <div class="pt-element halogen" data-info="Br|35|Bromine|17|Halogen|2,8,18,7|−7|59|Flame retardants">
+                            <span class="atomic-num">35</span><span class="symbol">Br</span><span class="name">Bromine</span>
+                        </div>
+                        <div class="pt-element noble-gas" data-info="Kr|36|Krypton|18|Noble Gas|2,8,18,8|−157|−153|Lasers">
+                            <span class="atomic-num">36</span><span class="symbol">Kr</span><span class="name">Krypton</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-row">
+                        <div class="pt-period-num">5</div>
+                        <div class="pt-element alkali-metal" data-info="Rb|37|Rubidium|1|Alkali Metal|2,8,18,8,1|39|688|Fireworks">
+                            <span class="atomic-num">37</span><span class="symbol">Rb</span><span class="name">Rubidium</span>
+                        </div>
+                        <div class="pt-element alkaline-earth" data-info="Sr|38|Strontium|2|Alkaline Earth|2,8,18,8,2|777|1382|Fireworks (red)">
+                            <span class="atomic-num">38</span><span class="symbol">Sr</span><span class="name">Strontium</span>
+                        </div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">39</span><span class="symbol">Y</span><span class="name">Yttrium</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">40</span><span class="symbol">Zr</span><span class="name">Zirconium</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">41</span><span class="symbol">Nb</span><span class="name">Niobium</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">42</span><span class="symbol">Mo</span><span class="name">Molybd.</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">43</span><span class="symbol">Tc</span><span class="name">Technet.</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">44</span><span class="symbol">Ru</span><span class="name">Ruthen.</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">45</span><span class="symbol">Rh</span><span class="name">Rhodium</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">46</span><span class="symbol">Pd</span><span class="name">Palladium</span></div>
+                        <div class="pt-element transition-metal" data-info="Ag|47|Silver|11|Transition Metal|2,8,18,18,1|962|2162|Jewellery, electronics">
+                            <span class="atomic-num">47</span><span class="symbol">Ag</span><span class="name">Silver</span>
+                        </div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">48</span><span class="symbol">Cd</span><span class="name">Cadmium</span></div>
+                        <div class="pt-element post-transition"><span class="atomic-num">49</span><span class="symbol">In</span><span class="name">Indium</span></div>
+                        <div class="pt-element post-transition"><span class="atomic-num">50</span><span class="symbol">Sn</span><span class="name">Tin</span></div>
+                        <div class="pt-element metalloid"><span class="atomic-num">51</span><span class="symbol">Sb</span><span class="name">Antimony</span></div>
+                        <div class="pt-element metalloid"><span class="atomic-num">52</span><span class="symbol">Te</span><span class="name">Tellurium</span></div>
+                        <div class="pt-element halogen" data-info="I|53|Iodine|17|Halogen|2,8,18,18,7|114|184|Antiseptic, iodised salt">
+                            <span class="atomic-num">53</span><span class="symbol">I</span><span class="name">Iodine</span>
+                        </div>
+                        <div class="pt-element noble-gas" data-info="Xe|54|Xenon|18|Noble Gas|2,8,18,18,8|−112|−108|Car headlights">
+                            <span class="atomic-num">54</span><span class="symbol">Xe</span><span class="name">Xenon</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-row">
+                        <div class="pt-period-num">6</div>
+                        <div class="pt-element alkali-metal" data-info="Cs|55|Caesium|1|Alkali Metal|2,8,18,18,8,1|28|671|Atomic clocks">
+                            <span class="atomic-num">55</span><span class="symbol">Cs</span><span class="name">Caesium</span>
+                        </div>
+                        <div class="pt-element alkaline-earth" data-info="Ba|56|Barium|2|Alkaline Earth|2,8,18,18,8,2|727|1897|X-ray contrast">
+                            <span class="atomic-num">56</span><span class="symbol">Ba</span><span class="name">Barium</span>
+                        </div>
+                        <div class="pt-element lanthanide"><span class="atomic-num">57-71</span><span class="symbol">*</span><span class="name">Ln</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">72</span><span class="symbol">Hf</span><span class="name">Hafnium</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">73</span><span class="symbol">Ta</span><span class="name">Tantalum</span></div>
+                        <div class="pt-element transition-metal" data-info="W|74|Tungsten|6|Transition Metal|2,8,18,32,12,2|3422|5555|Filaments">
+                            <span class="atomic-num">74</span><span class="symbol">W</span><span class="name">Tungsten</span>
+                        </div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">75</span><span class="symbol">Re</span><span class="name">Rhenium</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">76</span><span class="symbol">Os</span><span class="name">Osmium</span></div>
+                        <div class="pt-element transition-metal"><span class="atomic-num">77</span><span class="symbol">Ir</span><span class="name">Iridium</span></div>
+                        <div class="pt-element transition-metal" data-info="Pt|78|Platinum|10|Transition Metal|2,8,18,32,17,1|1768|3825|Catalytic converters">
+                            <span class="atomic-num">78</span><span class="symbol">Pt</span><span class="name">Platinum</span>
+                        </div>
+                        <div class="pt-element transition-metal" data-info="Au|79|Gold|11|Transition Metal|2,8,18,32,18,1|1064|2856|Jewellery">
+                            <span class="atomic-num">79</span><span class="symbol">Au</span><span class="name">Gold</span>
+                        </div>
+                        <div class="pt-element post-transition" data-info="Hg|80|Mercury|12|Post-transition|2,8,18,32,18,2|−39|357|Thermometers">
+                            <span class="atomic-num">80</span><span class="symbol">Hg</span><span class="name">Mercury</span>
+                        </div>
+                        <div class="pt-element post-transition"><span class="atomic-num">81</span><span class="symbol">Tl</span><span class="name">Thallium</span></div>
+                        <div class="pt-element post-transition" data-info="Pb|82|Lead|14|Post-transition|2,8,18,32,18,4|327|1749|Batteries">
+                            <span class="atomic-num">82</span><span class="symbol">Pb</span><span class="name">Lead</span>
+                        </div>
+                        <div class="pt-element post-transition"><span class="atomic-num">83</span><span class="symbol">Bi</span><span class="name">Bismuth</span></div>
+                        <div class="pt-element metalloid"><span class="atomic-num">84</span><span class="symbol">Po</span><span class="name">Polonium</span></div>
+                        <div class="pt-element halogen"><span class="atomic-num">85</span><span class="symbol">At</span><span class="name">Astatine</span></div>
+                        <div class="pt-element noble-gas" data-info="Rn|86|Radon|18|Noble Gas|2,8,18,32,18,8|−71|−62|Radioactive">
+                            <span class="atomic-num">86</span><span class="symbol">Rn</span><span class="name">Radon</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-row">
+                        <div class="pt-period-num">7</div>
+                        <div class="pt-element alkali-metal" style="opacity:0.5"><span class="atomic-num">87</span><span class="symbol">Fr</span><span class="name">Francium</span></div>
+                        <div class="pt-element alkaline-earth" style="opacity:0.5"><span class="atomic-num">88</span><span class="symbol">Ra</span><span class="name">Radium</span></div>
+                        <div class="pt-element actinide"><span class="atomic-num">89-103</span><span class="symbol">**</span><span class="name">An</span></div>
+                        <div class="pt-element transition-metal" style="opacity:0.4"><span class="symbol">Rf</span></div>
+                        <div class="pt-element transition-metal" style="opacity:0.4"><span class="symbol">Db</span></div>
+                        <div class="pt-element transition-metal" style="opacity:0.4"><span class="symbol">Sg</span></div>
+                        <div class="pt-element transition-metal" style="opacity:0.4"><span class="symbol">Bh</span></div>
+                        <div class="pt-element transition-metal" style="opacity:0.4"><span class="symbol">Hs</span></div>
+                        <div class="pt-element transition-metal" style="opacity:0.4"><span class="symbol">Mt</span></div>
+                        <div class="pt-element transition-metal" style="opacity:0.4"><span class="symbol">Ds</span></div>
+                        <div class="pt-element transition-metal" style="opacity:0.4"><span class="symbol">Rg</span></div>
+                        <div class="pt-element transition-metal" style="opacity:0.4"><span class="symbol">Cn</span></div>
+                        <div class="pt-element post-transition" style="opacity:0.4"><span class="symbol">Nh</span></div>
+                        <div class="pt-element post-transition" style="opacity:0.4"><span class="symbol">Fl</span></div>
+                        <div class="pt-element post-transition" style="opacity:0.4"><span class="symbol">Mc</span></div>
+                        <div class="pt-element post-transition" style="opacity:0.4"><span class="symbol">Lv</span></div>
+                        <div class="pt-element halogen" style="opacity:0.4"><span class="symbol">Ts</span></div>
+                        <div class="pt-element noble-gas" style="opacity:0.4"><span class="symbol">Og</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-point">
+                <strong>💡 Key Concept:</strong> Elements in the same <strong>Group</strong> (column) have the same number of <strong>valence electrons</strong> → similar chemical properties.
+            </div>
+        </section>
+
+        <section id="trends" class="section">
+            <h2 class="section-title">📈 Periodic Trends — Definitions & Diagrams</h2>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-trend="atomic-radius">Atomic Radius</button>
+                <button class="tab-btn" data-trend="ionisation">Ionisation Energy</button>
+                <button class="tab-btn" data-trend="electronegativity">Electronegativity</button>
+                <button class="tab-btn" data-trend="reactivity">Reactivity</button>
+            </div>
+
+            <div class="tab-content active" id="atomic-radius-tab">
+                <div class="definition-box">
+                    <h3>📏 Atomic Radius <span class="prop-label physical">Physical</span></h3>
+                    <div class="def-text">
+                        <strong>Definition:</strong> Half the distance between the nuclei of two covalently bonded atoms of the same element.
+                    </div>
+                    <p style="margin-top:8px; font-size:0.9em;">Measures atom size. Larger radius = larger atom.</p>
+                </div>
+
+                <div class="trend-diagram-grid">
+                    <div class="arrow-diagram">
+                        <h4>📊 Trend Direction</h4>
+                        <div class="arrow-visual">
+                            <div class="arrow-corner">Period→<br>Group↓</div>
+                            <div class="arrow-right decrease">DECREASES →</div>
+                            <div class="arrow-down increase">INCREASES ↓</div>
+                            <div class="arrow-center">
+                                <strong>Smallest:</strong> Top-right<br>
+                                <strong>Largest:</strong> Bottom-left
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-chart-box">
+                        <h4>Atomic Radius Across Period 2 (pm)</h4>
+                        <div class="bar-chart" id="ar-chart"></div>
+                    </div>
+                </div>
+
+                <div class="trend-explain-grid">
+                    <div class="explain-card across">
+                        <h5><span class="badge across">→ Across</span> DECREASES</h5>
+                        <ul>
+                            <li>More protons (+1 each element)</li>
+                            <li>Electrons in same shell</li>
+                            <li>Stronger nuclear pull → smaller</li>
+                        </ul>
+                    </div>
+                    <div class="explain-card down">
+                        <h5><span class="badge down">↓ Down</span> INCREASES</h5>
+                        <ul>
+                            <li>New electron shell added</li>
+                            <li>Electrons further from nucleus</li>
+                            <li>Greater shielding → larger</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="ionisation-tab">
+                <div class="definition-box">
+                    <h3>⚡ First Ionisation Energy <span class="prop-label chemical">Chemical</span></h3>
+                    <div class="def-text">
+                        <strong>Definition:</strong> Energy required to remove one mole of electrons from one mole of gaseous atoms to form one mole of singly charged gaseous cations.
+                    </div>
+                    <div class="formula-box">X(g) → X⁺(g) + e⁻</div>
+                </div>
+
+                <div class="trend-diagram-grid">
+                    <div class="arrow-diagram">
+                        <h4>📊 Trend Direction</h4>
+                        <div class="arrow-visual">
+                            <div class="arrow-corner">Period→<br>Group↓</div>
+                            <div class="arrow-right increase">INCREASES →</div>
+                            <div class="arrow-down decrease">DECREASES ↓</div>
+                            <div class="arrow-center">
+                                <strong>Highest:</strong> He (top-right)<br>
+                                <strong>Lowest:</strong> Fr (bottom-left)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-chart-box">
+                        <h4>First IE Across Period 2 (kJ/mol)</h4>
+                        <div class="bar-chart" id="ie-chart"></div>
+                    </div>
+                </div>
+
+                <div class="trend-explain-grid">
+                    <div class="explain-card across">
+                        <h5><span class="badge across">→ Across</span> INCREASES</h5>
+                        <ul>
+                            <li>More protons → stronger hold</li>
+                            <li>Same number of shells</li>
+                            <li>Electron is removed less readily</li>
+                        </ul>
+                    </div>
+                    <div class="explain-card down">
+                        <h5><span class="badge down">↓ Down</span> DECREASES</h5>
+                        <ul>
+                            <li>Electron further from nucleus</li>
+                            <li>Greater shielding</li>
+                            <li>Electron is removed more readily</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <strong>💡 Link:</strong> Lower IE → more reactive metals. K has lower IE than Na, so K is more reactive!
+                </div>
+            </div>
+
+            <div class="tab-content" id="electronegativity-tab">
+                <div class="definition-box">
+                    <h3>🧲 Electronegativity <span class="prop-label chemical">Chemical</span></h3>
+                    <div class="def-text">
+                        <strong>Definition:</strong> Ability of an atom to attract shared electrons in a covalent bond.
+                    </div>
+                    <p style="margin-top:8px; font-size:0.9em;">Fluorine is most electronegative (4.0).</p>
+                </div>
+
+                <div class="trend-diagram-grid">
+                    <div class="arrow-diagram">
+                        <h4>📊 Trend Direction</h4>
+                        <div class="arrow-visual">
+                            <div class="arrow-corner">Period→<br>Group↓</div>
+                            <div class="arrow-right increase">INCREASES →</div>
+                            <div class="arrow-down decrease">DECREASES ↓</div>
+                            <div class="arrow-center">
+                                <strong>Highest:</strong> F (4.0)<br>
+                                <strong>Lowest:</strong> Fr (~0.7)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-chart-box">
+                        <h4>Electronegativity Period 2 (Pauling)</h4>
+                        <div class="bar-chart" id="en-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="reactivity-tab">
+                <div class="definition-box">
+                    <h3>🔥 Reactivity <span class="prop-label chemical">Chemical</span></h3>
+                    <div class="def-text">
+                        <strong>Metals:</strong> How readily an atom LOSES electrons to form positive ions.<br>
+                        <strong>Non-metals:</strong> How readily an atom GAINS electrons to form negative ions.
+                    </div>
+                </div>
+
+                <div class="trend-diagram-grid">
+                    <div class="arrow-diagram">
+                        <h4>Group 1 (Metals)</h4>
+                        <div class="arrow-visual">
+                            <div class="arrow-corner">Li<br>(least)</div>
+                            <div class="arrow-right" style="background:#eee; color:#888;">N/A</div>
+                            <div class="arrow-down increase">MORE REACTIVE ↓</div>
+                            <div class="arrow-center">
+                                K > Na > Li<br>
+                                <small>More readily loses e⁻ down</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="arrow-diagram">
+                        <h4>Group 17 (Halogens)</h4>
+                        <div class="arrow-visual">
+                            <div class="arrow-corner">F<br>(most)</div>
+                            <div class="arrow-right" style="background:#eee; color:#888;">N/A</div>
+                            <div class="arrow-down decrease">LESS REACTIVE ↓</div>
+                            <div class="arrow-center">
+                                F > Cl > Br > I<br>
+                                <small>Less readily gains e⁻ down</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>Opposite trends!</strong> Metals: MORE reactive down. Non-metals: LESS reactive down.
+                </div>
+            </div>
+        </section>
+
+        <section id="groups" class="section">
+            <h2 class="section-title">🔬 Group Study — Physical & Chemical Properties</h2>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="alkali" style="background:var(--alkali); color:white;">🔴 Alkali Metals</button>
+                <button class="tab-btn" data-tab="halogen">🟣 Halogens</button>
+                <button class="tab-btn" data-tab="noble">🔵 Noble Gases</button>
+                <button class="tab-btn" data-tab="transition">🟡 Transition Metals</button>
+            </div>
+
+            <div class="tab-content active" id="alkali-tab">
+                <div class="props-grid">
+                    <div class="prop-section">
+                        <h4><span class="icon physical">🔬</span> Physical Properties <span class="prop-label physical">Physical</span></h4>
+                        <ul class="prop-list">
+                            <li><span>Atomic radius</span><span class="trend-tag up">↑ Increases</span></li>
+                            <li><span>Melting point</span><span class="trend-tag down">↓ Decreases</span></li>
+                            <li><span>Boiling point</span><span class="trend-tag down">↓ Decreases</span></li>
+                            <li><span>Density</span><span class="trend-tag up">↑ Generally increases</span></li>
+                        </ul>
+                        <div class="key-point" style="margin-top:10px; font-size:0.82em;">
+                            <strong>Why mp decreases?</strong> Larger atoms → weaker metallic bonds.
+                        </div>
+                    </div>
+                    <div class="prop-section">
+                        <h4><span class="icon chemical">⚗️</span> Chemical Properties <span class="prop-label chemical">Chemical</span></h4>
+                        <ul class="prop-list">
+                            <li><span>Reactivity with water</span><span class="trend-tag up">↑ Increases</span></li>
+                            <li><span>Ionisation energy</span><span class="trend-tag down">↓ Decreases</span></li>
+                        </ul>
+                        <div class="reaction-card" style="margin-top:10px;">
+                            <div class="reaction-header" style="background:var(--alkali);">
+                                <h4>Na + Water</h4>
+                            </div>
+                            <div class="reaction-body" style="padding:10px;">
+                                <div class="eq-box chemical" style="font-size:0.9em;">2Na + 2H₂O → 2NaOH + H₂</div>
+                                <p style="font-size:0.8em; margin-top:8px;">Vigorous fizzing, may ignite yellow flame.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="halogen-tab">
+                <div class="props-grid">
+                    <div class="prop-section">
+                        <h4><span class="icon physical">🔬</span> Physical Properties <span class="prop-label physical">Physical</span></h4>
+                        <ul class="prop-list">
+                            <li><span>State at r.t.p.</span><span class="trend-tag varies">Gas→Liq→Solid</span></li>
+                            <li><span>Colour</span><span class="trend-tag up">↑ Darker</span></li>
+                            <li><span>Melting point</span><span class="trend-tag up">↑ Increases</span></li>
+                            <li><span>Boiling point</span><span class="trend-tag up">↑ Increases</span></li>
+                        </ul>
+                        <div class="key-point" style="margin-top:10px; font-size:0.82em;">
+                            <strong>Why mp increases?</strong> Larger molecules → stronger van der Waals forces.
+                        </div>
+                    </div>
+                    <div class="prop-section">
+                        <h4><span class="icon chemical">⚗️</span> Chemical Properties <span class="prop-label chemical">Chemical</span></h4>
+                        <ul class="prop-list">
+                            <li><span>Reactivity</span><span class="trend-tag down">↓ Decreases</span></li>
+                            <li><span>Oxidising power</span><span class="trend-tag down">↓ Decreases</span></li>
+                        </ul>
+                        <div class="warning-box" style="margin-top:10px; font-size:0.82em;">
+                            Opposite to Group 1! Reactivity DECREASES down.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="noble-tab">
+                <div class="props-grid">
+                    <div class="prop-section">
+                        <h4><span class="icon physical">🔬</span> Physical Properties <span class="prop-label physical">Physical</span></h4>
+                        <ul class="prop-list">
+                            <li><span>Boiling point</span><span class="trend-tag up">↑ Increases</span></li>
+                            <li><span>Density</span><span class="trend-tag up">↑ Increases</span></li>
+                        </ul>
+                    </div>
+                    <div class="prop-section">
+                        <h4><span class="icon chemical">⚗️</span> Chemical Properties <span class="prop-label chemical">Chemical</span></h4>
+                        <ul class="prop-list">
+                            <li><span>Reactivity</span><span class="trend-tag varies">Essentially zero</span></li>
+                        </ul>
+                        <div class="key-point" style="margin-top:10px; font-size:0.82em;">
+                            <strong>Why unreactive?</strong> Complete outer shell (stable octet/duplet).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="transition-tab">
+                <div class="props-grid">
+                    <div class="prop-section">
+                        <h4><span class="icon physical">🔬</span> Physical Properties <span class="prop-label physical">Physical</span></h4>
+                        <ul class="prop-list">
+                            <li><span>Melting point</span><span class="trend-tag varies">High</span></li>
+                            <li><span>Density</span><span class="trend-tag varies">High</span></li>
+                            <li><span>Hardness</span><span class="trend-tag varies">Hard & strong</span></li>
+                        </ul>
+                    </div>
+                    <div class="prop-section">
+                        <h4><span class="icon chemical">⚗️</span> Chemical Properties <span class="prop-label chemical">Chemical</span></h4>
+                        <ul class="prop-list">
+                            <li><span>Coloured compounds</span><span class="trend-tag varies">Yes</span></li>
+                            <li><span>Variable oxidation states</span><span class="trend-tag varies">Yes</span></li>
+                            <li><span>Catalytic activity</span><span class="trend-tag varies">Good</span></li>
+                        </ul>
+                        <p style="font-size:0.82em; margin-top:10px;"><strong>Precipitate tests:</strong> Cu²⁺ → blue, Fe²⁺ → green, Fe³⁺ → brown</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="displacement" class="section">
+            <h2 class="section-title">🔄 Displacement Reactions</h2>
+
+            <div class="definition-box">
+                <h3>🔄 What is Displacement?</h3>
+                <div class="def-text">
+                    A <strong>more reactive</strong> element displaces a <strong>less reactive</strong> element from its compound.
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="halogen-disp" style="background:var(--halogen); color:white;">🟣 Halogen Displacement</button>
+                <button class="tab-btn" data-tab="metal-disp">🟡 Metal Displacement</button>
+            </div>
+
+            <div class="tab-content active" id="halogen-disp-tab">
+                <p style="margin-bottom:15px;"><strong>Rule:</strong> A more reactive halogen displaces a less reactive halide. Order: Cl₂ > Br₂ > I₂</p>
+
+                <div class="reaction-card">
+                    <div class="reaction-header" style="background:linear-gradient(135deg, var(--halogen), #7d3c98);">
+                        <h4>Chlorine + Potassium Bromide</h4>
+                        <span class="rx-badge success">✅ Reacts</span>
+                    </div>
+                    <div class="reaction-body">
+                        <div class="eq-group">
+                            <div class="eq-type">Chemical Equation:</div>
+                            <div class="eq-box chemical">Cl₂(aq) + 2KBr(aq) → 2KCl(aq) + Br₂(aq)</div>
+                        </div>
+                        <div class="eq-group">
+                            <div class="eq-type">Ionic Equation:</div>
+                            <div class="eq-box ionic">Cl₂(aq) + 2Br⁻(aq) → 2Cl⁻(aq) + Br₂(aq)</div>
+                        </div>
+                        <div class="half-eqs">
+                            <div class="half-eq reduction">
+                                <span class="label">Reduction:</span>
+                                <span class="eq">Cl₂ + 2e⁻ → 2Cl⁻</span>
+                            </div>
+                            <div class="half-eq oxidation">
+                                <span class="label">Oxidation:</span>
+                                <span class="eq">2Br⁻ → Br₂ + 2e⁻</span>
+                            </div>
+                        </div>
+                        <div class="obs-box">
+                            <strong>🔍 Observation:</strong>
+                            <ul>
+                                <li>Colourless → <strong>orange/brown</strong></li>
+                                <li>Bromine produced</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reaction-card">
+                    <div class="reaction-header" style="background:linear-gradient(135deg, var(--halogen), #5b2c6f);">
+                        <h4>Chlorine + Potassium Iodide</h4>
+                        <span class="rx-badge success">✅ Reacts</span>
+                    </div>
+                    <div class="reaction-body">
+                        <div class="eq-group">
+                            <div class="eq-type">Chemical Equation:</div>
+                            <div class="eq-box chemical">Cl₂(aq) + 2KI(aq) → 2KCl(aq) + I₂(aq)</div>
+                        </div>
+                        <div class="eq-group">
+                            <div class="eq-type">Ionic Equation:</div>
+                            <div class="eq-box ionic">Cl₂(aq) + 2I⁻(aq) → 2Cl⁻(aq) + I₂(aq)</div>
+                        </div>
+                        <div class="obs-box">
+                            <strong>🔍 Observation:</strong> Colourless → <strong>brown</strong> (iodine)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reaction-card">
+                    <div class="reaction-header" style="background:linear-gradient(135deg, #a04000, #7b241c);">
+                        <h4>Bromine + Potassium Iodide</h4>
+                        <span class="rx-badge success">✅ Reacts</span>
+                    </div>
+                    <div class="reaction-body">
+                        <div class="eq-group">
+                            <div class="eq-type">Chemical Equation:</div>
+                            <div class="eq-box chemical">Br₂(aq) + 2KI(aq) → 2KBr(aq) + I₂(aq)</div>
+                        </div>
+                        <div class="eq-group">
+                            <div class="eq-type">Ionic Equation:</div>
+                            <div class="eq-box ionic">Br₂(aq) + 2I⁻(aq) → 2Br⁻(aq) + I₂(aq)</div>
+                        </div>
+                        <div class="obs-box">
+                            <strong>🔍 Observation:</strong> Orange → <strong>darker brown</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reaction-card">
+                    <div class="reaction-header" style="background:#7f8c8d;">
+                        <h4>Bromine + Potassium Chloride</h4>
+                        <span class="rx-badge fail">❌ No Reaction</span>
+                    </div>
+                    <div class="reaction-body">
+                        <div class="eq-box no-rx">Br₂(aq) + 2KCl(aq) → No Reaction</div>
+                        <div class="explain-box">
+                            <strong>Why?</strong> Br is less reactive than Cl. Cannot displace Cl⁻.
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="margin:20px 0 10px;">📋 Halogen Displacement Summary</h4>
+                <table class="data-table halogen-table">
+                    <thead>
+                        <tr><th>Halogen ↓</th><th>+ KCl</th><th>+ KBr</th><th>+ KI</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Cl₂</strong></td><td class="no-rx-cell">—</td><td class="rx-cell">✅ Orange</td><td class="rx-cell">✅ Brown</td></tr>
+                        <tr><td><strong>Br₂</strong></td><td class="no-rx-cell">❌</td><td class="no-rx-cell">—</td><td class="rx-cell">✅ Brown</td></tr>
+                        <tr><td><strong>I₂</strong></td><td class="no-rx-cell">❌</td><td class="no-rx-cell">❌</td><td class="no-rx-cell">—</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin:20px 0 10px;">🎬 Videos</h4>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumb" style="background:linear-gradient(135deg,#9b59b6,#8e44ad);" onclick="window.open('https://www.youtube.com/watch?v=CnNLfOeoExo')">
+                            🧪<div class="play-btn">▶</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Halogen Displacement</h4>
+                            <p>See colour changes!</p>
+                            <a href="https://www.youtube.com/watch?v=CnNLfOeoExo" target="_blank" class="video-link">Watch →</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-thumb" style="background:linear-gradient(135deg,#8e44ad,#6c3483);" onclick="window.open('https://www.youtube.com/watch?v=QY_DY5qGvJk')">
+                            📚<div class="play-btn">▶</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Halogen Reactivity</h4>
+                            <p>Why Cl displaces Br</p>
+                            <a href="https://www.youtube.com/watch?v=QY_DY5qGvJk" target="_blank" class="video-link">Watch →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="metal-disp-tab">
+                <p style="margin-bottom:15px;"><strong>Rule:</strong> A more reactive metal displaces a less reactive metal from its salt solution.</p>
+
+                <div class="reaction-card">
+                    <div class="reaction-header" style="background:linear-gradient(135deg, #f39c12, #d68910);">
+                        <h4>Zinc + Copper(II) Sulfate</h4>
+                        <span class="rx-badge success">✅ Reacts</span>
+                    </div>
+                    <div class="reaction-body">
+                        <div class="eq-group">
+                            <div class="eq-type">Chemical Equation:</div>
+                            <div class="eq-box chemical">Zn(s) + CuSO₄(aq) → ZnSO₄(aq) + Cu(s)</div>
+                        </div>
+                        <div class="eq-group">
+                            <div class="eq-type">Ionic Equation:</div>
+                            <div class="eq-box ionic">Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)</div>
+                        </div>
+                        <div class="half-eqs">
+                            <div class="half-eq oxidation">
+                                <span class="label">Oxidation:</span>
+                                <span class="eq">Zn → Zn²⁺ + 2e⁻</span>
+                            </div>
+                            <div class="half-eq reduction">
+                                <span class="label">Reduction:</span>
+                                <span class="eq">Cu²⁺ + 2e⁻ → Cu</span>
+                            </div>
+                        </div>
+                        <div class="obs-box">
+                            <strong>🔍 Observations:</strong>
+                            <ul>
+                                <li>Blue solution → <strong>colourless</strong></li>
+                                <li><strong>Brown copper</strong> deposited on zinc</li>
+                                <li>Solution warms up</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reaction-card">
+                    <div class="reaction-header" style="background:linear-gradient(135deg, #e67e22, #ca6f1e);">
+                        <h4>Iron + Copper(II) Sulfate</h4>
+                        <span class="rx-badge success">✅ Reacts</span>
+                    </div>
+                    <div class="reaction-body">
+                        <div class="eq-group">
+                            <div class="eq-type">Chemical Equation:</div>
+                            <div class="eq-box chemical">Fe(s) + CuSO₄(aq) → FeSO₄(aq) + Cu(s)</div>
+                        </div>
+                        <div class="eq-group">
+                            <div class="eq-type">Ionic Equation:</div>
+                            <div class="eq-box ionic">Fe(s) + Cu²⁺(aq) → Fe²⁺(aq) + Cu(s)</div>
+                        </div>
+                        <div class="obs-box">
+                            <strong>🔍 Observations:</strong>
+                            <ul>
+                                <li>Blue → <strong>light green</strong> (Fe²⁺ formed)</li>
+                                <li><strong>Brown copper</strong> deposited</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reaction-card">
+                    <div class="reaction-header" style="background:linear-gradient(135deg, #27ae60, #1e8449);">
+                        <h4>Magnesium + Copper(II) Sulfate</h4>
+                        <span class="rx-badge success">✅ Very Vigorous!</span>
+                    </div>
+                    <div class="reaction-body">
+                        <div class="eq-group">
+                            <div class="eq-type">Chemical Equation:</div>
+                            <div class="eq-box chemical">Mg(s) + CuSO₄(aq) → MgSO₄(aq) + Cu(s)</div>
+                        </div>
+                        <div class="eq-group">
+                            <div class="eq-type">Ionic Equation:</div>
+                            <div class="eq-box ionic">Mg(s) + Cu²⁺(aq) → Mg²⁺(aq) + Cu(s)</div>
+                        </div>
+                        <div class="obs-box">
+                            <strong>🔍 Observations:</strong>
+                            <ul>
+                                <li><strong>Vigorous reaction</strong>, solution gets hot</li>
+                                <li>Blue → <strong>colourless</strong> rapidly</li>
+                                <li>Brown copper deposited</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reaction-card">
+                    <div class="reaction-header" style="background:#7f8c8d;">
+                        <h4>Copper + Zinc Sulfate</h4>
+                        <span class="rx-badge fail">❌ No Reaction</span>
+                    </div>
+                    <div class="reaction-body">
+                        <div class="eq-box no-rx">Cu(s) + ZnSO₄(aq) → No Reaction</div>
+                        <div class="explain-box">
+                            <strong>Why?</strong> Cu is less reactive than Zn. Cannot displace Zn²⁺.
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="margin:20px 0 10px;">📋 Metal Displacement Summary</h4>
+                <table class="data-table transition-table">
+                    <thead>
+                        <tr><th>Metal ↓</th><th>+ MgSO₄</th><th>+ ZnSO₄</th><th>+ FeSO₄</th><th>+ CuSO₄</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Mg</strong></td><td class="no-rx-cell">—</td><td class="rx-cell">✅</td><td class="rx-cell">✅</td><td class="rx-cell">✅</td></tr>
+                        <tr><td><strong>Zn</strong></td><td class="no-rx-cell">❌</td><td class="no-rx-cell">—</td><td class="rx-cell">✅</td><td class="rx-cell">✅</td></tr>
+                        <tr><td><strong>Fe</strong></td><td class="no-rx-cell">❌</td><td class="no-rx-cell">❌</td><td class="no-rx-cell">—</td><td class="rx-cell">✅</td></tr>
+                        <tr><td><strong>Cu</strong></td><td class="no-rx-cell">❌</td><td class="no-rx-cell">❌</td><td class="no-rx-cell">❌</td><td class="no-rx-cell">—</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin:20px 0 10px;">🎬 Videos</h4>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumb" style="background:linear-gradient(135deg,#f39c12,#d68910);" onclick="window.open('https://www.youtube.com/watch?v=nbo-2MRFfPY')">
+                            🧪<div class="play-btn">▶</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Metal Displacement</h4>
+                            <p>Zn in CuSO₄, Fe in CuSO₄</p>
+                            <a href="https://www.youtube.com/watch?v=nbo-2MRFfPY" target="_blank" class="video-link">Watch →</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-thumb" style="background:linear-gradient(135deg,#e74c3c,#c0392b);" onclick="window.open('https://www.youtube.com/watch?v=TjnIlWCk6G0')">
+                            🔥<div class="play-btn">▶</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Thermite Reaction</h4>
+                            <p>Al + Fe₂O₃ extreme!</p>
+                            <a href="https://www.youtube.com/watch?v=TjnIlWCk6G0" target="_blank" class="video-link">Watch →</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-thumb" style="background:linear-gradient(135deg,#1abc9c,#16a085);" onclick="window.open('https://www.youtube.com/watch?v=1FHf7bRLxwM')">
+                            ✨<div class="play-btn">▶</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Copper + Silver Nitrate</h4>
+                            <p>Silver crystals grow!</p>
+                            <a href="https://www.youtube.com/watch?v=1FHf7bRLxwM" target="_blank" class="video-link">Watch →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:20px; border-top:4px solid var(--accent);">
+                <h3>🔄 Understanding Redox (OIL RIG)</h3>
+                <div class="redox-grid">
+                    <div class="redox-card">
+                        <h4 style="color:#e74c3c;">Oxidation</h4>
+                        <ul>
+                            <li><strong>O</strong>xidation <strong>I</strong>s <strong>L</strong>oss of electrons</li>
+                            <li>Increase in oxidation state</li>
+                        </ul>
+                        <div class="redox-example" style="background:#ffebee;">
+                            Zn → Zn²⁺ + 2e⁻
+                        </div>
+                    </div>
+                    <div class="redox-card">
+                        <h4 style="color:#27ae60;">Reduction</h4>
+                        <ul>
+                            <li><strong>R</strong>eduction <strong>I</strong>s <strong>G</strong>ain of electrons</li>
+                            <li>Decrease in oxidation state</li>
+                        </ul>
+                        <div class="redox-example" style="background:#e8f5e9;">
+                            Cu²⁺ + 2e⁻ → Cu
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reactions" class="section">
+            <h2 class="section-title">⚡ Reactivity Series</h2>
+
+            <div class="reactivity-list">
+                <div class="reactivity-item high"><span class="sym">K</span> Potassium — violent with water</div>
+                <div class="reactivity-item high"><span class="sym">Na</span> Sodium — vigorous with water</div>
+                <div class="reactivity-item high"><span class="sym">Li</span> Lithium — reacts with water</div>
+                <div class="reactivity-item high"><span class="sym">Ca</span> Calcium — reacts with water</div>
+                <div class="reactivity-item med"><span class="sym">Mg</span> Magnesium — reacts with steam</div>
+                <div class="reactivity-item med"><span class="sym">Al</span> Aluminium — reacts with steam</div>
+                <div class="reactivity-item med"><span class="sym">Zn</span> Zinc — reacts with steam</div>
+                <div class="reactivity-item med"><span class="sym">Fe</span> Iron — reacts with steam</div>
+                <div class="reactivity-item low"><span class="sym">H</span> (Hydrogen)</div>
+                <div class="reactivity-item low"><span class="sym">Cu</span> Copper — no reaction with acid</div>
+                <div class="reactivity-item low"><span class="sym">Ag</span> Silver — unreactive</div>
+                <div class="reactivity-item low"><span class="sym">Au</span> Gold — very unreactive</div>
+            </div>
+
+            <div class="key-point">
+                <strong>Memory:</strong> <em>Please Send Little Cats, Monkeys, And Zebras Into Hot Countries, Signed Gordon!</em>
+            </div>
+        </section>
+
+        <section id="applications" class="section">
+            <h2 class="section-title">🏭 Real-World Applications</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>🔴 Alkali Metal Uses</span><span class="arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-inner">
+                        <div class="app-card">
+                            <div class="app-icon">🔋</div>
+                            <div class="app-content"><h4>Li — Batteries</h4><p>Li-ion batteries power phones, laptops, EVs.</p></div>
+                        </div>
+                        <div class="app-card">
+                            <div class="app-icon">🧂</div>
+                            <div class="app-content"><h4>Na — Salt & Industry</h4><p>NaCl for cooking, NaOH for soap.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>🟣 Halogen Uses</span><span class="arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-inner">
+                        <div class="app-card">
+                            <div class="app-icon">💧</div>
+                            <div class="app-content"><h4>Cl — Water Treatment</h4><p>Kills bacteria. Also bleach, PVC.</p></div>
+                        </div>
+                        <div class="app-card">
+                            <div class="app-icon">🩺</div>
+                            <div class="app-content"><h4>I — Antiseptic</h4><p>Wound treatment. Iodised salt.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>🔵 Noble Gas Uses</span><span class="arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-inner">
+                        <div class="app-card">
+                            <div class="app-icon">🎈</div>
+                            <div class="app-content"><h4>He — Balloons</h4><p>Lighter than air, non-flammable.</p></div>
+                        </div>
+                        <div class="app-card">
+                            <div class="app-icon">💡</div>
+                            <div class="app-content"><h4>Ar — Light Bulbs</h4><p>Inert; protects hot filament.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>🟡 Transition Metal Uses</span><span class="arrow">▼</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-inner">
+                        <div class="app-card">
+                            <div class="app-icon">🏗️</div>
+                            <div class="app-content"><h4>Fe — Steel</h4><p>Construction, vehicles.</p></div>
+                        </div>
+                        <div class="app-card">
+                            <div class="app-icon">🔌</div>
+                            <div class="app-content"><h4>Cu — Wiring</h4><p>Excellent conductor.</p></div>
+                        </div>
+                        <div class="app-card">
+                            <div class="app-icon">⚗️</div>
+                            <div class="app-content"><h4>Catalysts</h4><p>Fe (Haber), V₂O₅ (Contact), Ni.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice" class="section">
+            <h2 class="section-title">✏️ Practice Questions</h2>
+
+            <div class="quiz-box">
+                <div class="quiz-loading" id="quizLoading">
+                    <div class="spinner"></div>
+                    <p>Loading questions...</p>
+                </div>
+                <div id="quizContent" style="display:none;">
+                    <div class="quiz-header">
+                        <div class="topic-btns" id="topicBtns"></div>
+                        <div>
+                            <input type="file" id="jsonUpload" accept="application/json" style="display:none;">
+                            <button class="tab-btn" style="background:var(--accent); color:white; font-size: 0.8em; padding: 6px 12px; margin-right: 10px;" onclick="document.getElementById('jsonUpload').click()">📁 Load JSON</button>
+                            <div class="quiz-score" id="quizScore" style="display:inline-block;">Score: 0/0</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                    <div id="questionArea"></div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                    <div class="quiz-nav">
+                        <button id="prevBtn" onclick="prevQuestion()" disabled>← Prev</button>
+                        <span id="qCounter">1 of 10</span>
+                        <button id="nextBtn" onclick="nextQuestion()">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer">
+            📚 O Level Chemistry 6092 — Periodic Table Resource<br>
+            <span style="opacity:0.7; font-size:0.85em;">Singapore | 2025</span>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="element-header" id="elHeader"></div>
+            <div class="element-details" id="elDetails"></div>
+        </div>
+    </div>
+
+    <button class="back-top" id="backTop" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // ==================== DATA ====================
+        const chartData = {
+            ar: {labels:['Li','Be','B','C','N','O','F'],values:[152,112,87,77,75,73,72],colors:['var(--alkali)','var(--alkaline)','var(--metalloid)','var(--nonmetal)','var(--nonmetal)','var(--nonmetal)','var(--halogen)']},
+            ie: {labels:['Li','Be','B','C','N','O','F','Ne'],values:[520,900,801,1086,1402,1314,1681,2081],colors:['var(--alkali)','var(--alkaline)','var(--metalloid)','var(--nonmetal)','var(--nonmetal)','var(--nonmetal)','var(--halogen)','var(--noble)']},
+            en: {labels:['Li','Be','B','C','N','O','F'],values:[1.0,1.6,2.0,2.6,3.0,3.4,4.0],colors:['var(--alkali)','var(--alkaline)','var(--metalloid)','var(--nonmetal)','var(--nonmetal)','var(--nonmetal)','var(--halogen)']}
+        };
+
+        const questions = [
+            {t:'alkali',q:'Which alkali metal is MOST reactive with water?',o:['Li','Na','K','All same'],c:2,e:'K reacts most vigorously — valence electron further from nucleus.'},
+            {t:'alkali',q:'Why does Group 1 reactivity INCREASE down?',o:['Smaller atoms','Electron further from nucleus','More protons','Harder metals'],c:1,e:'More shells → valence electron further → weaker attraction → lost more readily.'},
+            {t:'halogen',q:'Which halogen displaces Br⁻ from KBr?',o:['I₂','Br₂','Cl₂','None'],c:2,e:'Cl₂ is more reactive, displaces Br⁻. Solution turns orange.'},
+            {t:'halogen',q:'Why does Group 17 reactivity DECREASE down?',o:['Smaller atoms','Electron further from nucleus','Fewer electrons','Become metals'],c:1,e:'Incoming electron further → weaker attraction → gained less readily.'},
+            {t:'noble',q:'Why are noble gases unreactive?',o:['No electrons','Complete outer shell','Too small','Low temperature only'],c:1,e:'Complete valence shell. No need to gain/lose/share electrons.'},
+            {t:'transition',q:'What colour precipitate does Fe³⁺ + NaOH give?',o:['Blue','White','Green','Reddish-brown'],c:3,e:'Fe³⁺ + 3OH⁻ → Fe(OH)₃ (reddish-brown).'},
+            {t:'displacement',q:'In Zn + CuSO₄, which species is oxidised?',o:['Cu²⁺','SO₄²⁻','Zn','Cu'],c:2,e:'Zn → Zn²⁺ + 2e⁻ (loses electrons = oxidation).'},
+            {t:'displacement',q:'Can Cu displace Zn from ZnSO₄?',o:['Yes','No'],c:1,e:'Cu is less reactive than Zn. Cannot displace.'},
+            {t:'trends',q:'Across Period 3, atomic radius:',o:['Increases','Decreases','Stays same','Varies'],c:1,e:'More protons, same shell → stronger pull → smaller atoms.'},
+            {t:'trends',q:'Down Group 1, ionisation energy:',o:['Increases','Decreases','Stays same','Varies'],c:1,e:'Electron further from nucleus → removed more readily with less energy.'}
+        ];
+
+        // ==================== NAVIGATION ====================
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            let current = '';
+            sections.forEach(s => { if (scrollY >= s.offsetTop - 120) current = s.id; });
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+            });
+            document.getElementById('backTop').classList.toggle('show', scrollY > 400);
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) scrollTo({ top: target.offsetTop - 90, behavior: 'smooth' });
+            });
+        });
+
+        // ==================== ELEMENT MODAL ====================
+        document.querySelectorAll('.pt-element[data-info]').forEach(el => {
+            el.addEventListener('click', () => {
+                const [sym,num,name,grp,type,cfg,mp,bp,uses] = el.dataset.info.split('|');
+                let bg = '#95a5a6';
+                if (el.classList.contains('alkali-metal')) bg = 'var(--alkali)';
+                else if (el.classList.contains('alkaline-earth')) bg = 'var(--alkaline)';
+                else if (el.classList.contains('halogen')) bg = 'var(--halogen)';
+                else if (el.classList.contains('noble-gas')) bg = 'var(--noble)';
+                else if (el.classList.contains('transition-metal')) bg = 'var(--transition)';
+                else if (el.classList.contains('metalloid')) bg = 'var(--metalloid)';
+                else if (el.classList.contains('nonmetal')) bg = 'var(--nonmetal)';
+                
+                document.getElementById('elHeader').innerHTML = `<div class="num">${num}</div><div class="sym">${sym}</div><div class="name">${name}</div><div style="font-size:0.75em;opacity:0.9;margin-top:3px;">${type}</div>`;
+                document.getElementById('elHeader').style.background = bg;
+                document.getElementById('elDetails').innerHTML = `
+                    <div class="detail-box"><label>Group</label><span>${grp}</span></div>
+                    <div class="detail-box"><label>Config</label><span>${cfg}</span></div>
+                    <div class="detail-box"><label>Mp</label><span>${mp}°C</span></div>
+                    <div class="detail-box"><label>Bp</label><span>${bp}°C</span></div>
+                    <div class="detail-box full"><label>Uses</label><span>${uses}</span></div>
+                `;
+                document.getElementById('modal').classList.add('active');
+            });
+        });
+
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+        document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+
+        // ==================== LEGEND HIGHLIGHT ====================
+        let activeGroup = null;
+        document.querySelectorAll('.legend-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const grp = item.dataset.group;
+                if (activeGroup === grp) { clearHL(); activeGroup = null; item.classList.remove('active'); return; }
+                document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
+                clearHL(); activeGroup = grp; item.classList.add('active');
+                document.querySelectorAll('.pt-element').forEach(el => {
+                    if (el.classList.contains('empty')) return;
+                    el.classList.toggle('highlight', el.classList.contains(grp));
+                    el.classList.toggle('dimmed', !el.classList.contains(grp));
+                });
+                setTimeout(() => { if (activeGroup === grp) { clearHL(); activeGroup = null; item.classList.remove('active'); } }, 4000);
+            });
+        });
+        function clearHL() { document.querySelectorAll('.pt-element').forEach(el => el.classList.remove('highlight','dimmed')); }
+
+        // ==================== TABS ====================
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const section = btn.closest('section') || btn.closest('.section');
+                section.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.style.color = ''; });
+                section.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                if (btn.style.background && btn.style.background !== 'white') btn.style.color = 'white';
+                const tabId = (btn.dataset.tab || btn.dataset.trend) + '-tab';
+                const tabContent = document.getElementById(tabId);
+                if (tabContent) tabContent.classList.add('active');
+                // Render chart if needed
+                if (btn.dataset.trend === 'atomic-radius') renderChart('ar-chart', chartData.ar);
+                if (btn.dataset.trend === 'ionisation') renderChart('ie-chart', chartData.ie);
+                if (btn.dataset.trend === 'electronegativity') renderChart('en-chart', chartData.en);
+            });
+        });
+
+        // ==================== ACCORDION ====================
+        function toggleAccordion(header) {
+            const body = header.nextElementSibling;
+            const isActive = body.classList.contains('active');
+            document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+            if (!isActive) { body.classList.add('active'); header.classList.add('active'); }
+        }
+
+        // ==================== CHARTS ====================
+        function renderChart(id, data) {
+            const container = document.getElementById(id);
+            if (!container) return;
+            const max = Math.max(...data.values);
+            container.innerHTML = data.labels.map((l,i) => {
+                const h = (data.values[i] / max) * 140;
+                return `<div class="bar-wrap"><div class="bar" style="background:${data.colors[i]};height:${h}px"><span class="bar-val">${data.values[i]}</span></div><div class="bar-lbl">${l}</div></div>`;
+            }).join('');
+        }
+        // Initial chart
+        setTimeout(() => renderChart('ar-chart', chartData.ar), 100);
+
+        // ==================== QUIZ ====================
+        let currentQ = 0, score = 0, answered = [], userAns = [], filteredQs = [...questions];
+
+        // JSON UPLOAD LOGIC
+        document.getElementById('jsonUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const newQs = JSON.parse(e.target.result);
+                    if (Array.isArray(newQs)) {
+                        questions.push(...newQs);
+                        alert('Successfully loaded ' + newQs.length + ' new questions! Refreshing the quiz.');
+                        initQuiz();
+                    } else {
+                        alert('JSON format incorrect. Expected an array of objects.');
+                    }
+                } catch (err) {
+                    alert('Invalid JSON file. Please check the format.');
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        function initQuiz() {
+            const topics = ['all', ...new Set(questions.map(q => q.t))];
+            document.getElementById('topicBtns').innerHTML = topics.map(t => 
+                `<button class="topic-btn${t==='all'?' active':''}" onclick="selectTopic('${t}')">${t==='all'?'All':t.charAt(0).toUpperCase()+t.slice(1)}</button>`
+            ).join('');
+            document.getElementById('quizLoading').style.display = 'none';
+            document.getElementById('quizContent').style.display = 'block';
+            selectTopic('all');
+        }
+
+        function selectTopic(t) {
+            document.querySelectorAll('.topic-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === t || (t === 'all' && b.textContent === 'All')));
+            filteredQs = t === 'all' ? [...questions] : questions.filter(q => q.t === t);
+            filteredQs.sort(() => Math.random() - 0.5);
+            currentQ = 0; score = 0; answered = Array(filteredQs.length).fill(false); userAns = Array(filteredQs.length).fill(-1);
+            renderQ();
+        }
+
+        function renderQ() {
+            if (!filteredQs.length) { document.getElementById('questionArea').innerHTML = '<p>No questions.</p>'; return; }
+            const q = filteredQs[currentQ];
+            document.getElementById('progressFill').style.width = ((currentQ+1)/filteredQs.length*100)+'%';
+            document.getElementById('qCounter').textContent = `${currentQ+1} of ${filteredQs.length}`;
+            document.getElementById('quizScore').textContent = `Score: ${score}/${answered.filter(a=>a).length}`;
+            document.getElementById('prevBtn').disabled = currentQ === 0;
+            document.getElementById('nextBtn').textContent = currentQ === filteredQs.length-1 ? 'Finish' : 'Next →';
+            
+            let html = `<div class="quiz-question">${currentQ+1}. ${q.q}</div><div class="quiz-options">`;
+            q.o.forEach((opt,i) => {
+                let cls = 'quiz-opt';
+                if (answered[currentQ]) { cls += ' disabled'; if (i===q.c) cls+=' correct'; else if (i===userAns[currentQ]) cls+=' wrong'; }
+                html += `<div class="${cls}" onclick="checkAns(${i})">${String.fromCharCode(65+i)}) ${opt}</div>`;
+            });
+            html += '</div>';
+            document.getElementById('questionArea').innerHTML = html;
+            
+            const fb = document.getElementById('quizFeedback');
+            if (answered[currentQ]) {
+                fb.textContent = (userAns[currentQ]===q.c?'✓ Correct! ':'✗ Incorrect. ') + q.e;
+                fb.className = 'quiz-feedback show ' + (userAns[currentQ]===q.c?'correct':'wrong');
+            } else { fb.className = 'quiz-feedback'; }
+        }
+
+        function checkAns(i) {
+            if (answered[currentQ]) return;
+            answered[currentQ] = true; userAns[currentQ] = i;
+            if (i === filteredQs[currentQ].c) score++;
+            renderQ();
+        }
+
+        function nextQuestion() {
+            if (currentQ < filteredQs.length-1) { currentQ++; renderQ(); }
+            else {
+                const pct = Math.round(score/filteredQs.length*100);
+                document.getElementById('questionArea').innerHTML = `
+                    <div style="text-align:center;padding:20px;">
+                        <h3>Quiz Complete!</h3>
+                        <div style="font-size:2em;margin:15px 0;">${pct>=80?'🏆':pct>=60?'⭐':'📖'}</div>
+                        <div style="font-size:1.3em;color:var(--accent);font-weight:bold;">${score}/${filteredQs.length} (${pct}%)</div>
+                        <button onclick="selectTopic('all')" style="margin-top:15px;padding:8px 20px;background:var(--accent);color:white;border:none;border-radius:15px;cursor:pointer;">Try Again</button>
+                    </div>
+                `;
+                document.getElementById('quizFeedback').className = 'quiz-feedback';
+            }
+        }
+
+        function prevQuestion() { if (currentQ > 0) { currentQ--; renderQ(); } }
+
+        // Init
+        setTimeout(initQuiz, 500);
+        document.querySelector('.accordion-header').click();
+    </script>
+</body>
+</html>
